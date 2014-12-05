@@ -191,3 +191,9 @@ function hideTimesUp() {
     document.getElementById("timesUp").style.visibility = "hidden";
 }
 
+function autoRestart() {
+	hideTimesUp();
+	resetTime();
+	doRun();
+}
+

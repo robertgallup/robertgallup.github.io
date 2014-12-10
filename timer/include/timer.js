@@ -66,7 +66,7 @@ function updateClock() {
     if (totalSeconds <= 0) {
         document.getElementById("timesUp").style.visibility = "visible";
 		doStop();
-		resetTime();       
+		// resetTime();       
     } else {
         showTime();
     }
@@ -86,24 +86,8 @@ function updateControls() {
 function doOptions(timer) {
 
 	optionTimer = timer;
-	
 	hideTimesUp();
 	
-	// Set the background color of input fields
-/*
-	var all = document.querySelectorAll("input");
-	for (var i = 0; i < all.length; i++) {
-		all[i].style.backgroundColor = timerColors[timer];
-	}
-*/
-	
-    // Set form fields to timer values
-/*
-    document.getElementById("hourInput"  ).value = startHour[optionTimer];
-    document.getElementById("minuteInput").value = startMin[optionTimer];
-    document.getElementById("secondInput").value = startSecond[optionTimer];
-*/
-
 	clockFace.style.visibility = "hidden";
     optionForm.style.visibility = "visible";
     
@@ -137,7 +121,6 @@ function doOK() {
 // 	}
 
     // Finally, reset the clock to the potentially new values
-    isReset = false;
     doReset();
 	doCancel();
 
@@ -160,7 +143,6 @@ function doCancel() {
     var h = document.getElementById("hourInput"); h.value = '';
 	var m = document.getElementById("minuteInput"); m.value = '';
 	var s = document.getElementById("secondInput"); s.value = '';
-
 
 }
 

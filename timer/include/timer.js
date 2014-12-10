@@ -4,7 +4,7 @@ var timerColors		= ['#FFE5BB', '#9FF4B7'];
 var resetButtonImg	= ["url('images/resetA.png')", "url('images/resetB.png')"];
 var isReset			= false;
 var startHour		= [0, 0];
-var startMin	   	= [1, 2];
+var startMin	   	= [1, 0];
 var startSecond		= [0, 0];
 
 var optionTimer		= 0;

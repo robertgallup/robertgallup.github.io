@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>...</title>
+		<script src="include/timer.js"></script>
+		<link rel="stylesheet" type="text/css" href="main.css">
+	</head>
+
+	<body onload="javascript:initDisplay()" class="noselect">
+	
+				<!-- THE CLOCK FACE + OPTIONS + TIMESUP -->
+				<div id="clock">
+					
+					<div id="clockFace" onclick="javascript:timeClick()"></div>
+					
+					<div id="optionsForm">
+						<input type="text" id="hourInput" class="optionA" name="hours" placeholder="H">
+						<input type="text" id="minuteInput" class="optionA" name="minutes" placeholder="M">
+						<input type="text" id="secondInput" class="optionA" name="seconds" placeholder="S">
+					</div>
+					
+					<div id="timesUp" onclick="javascript:autoReset()">TIME</div>
+					
+				</div>
+				
+				<!-- THE CONTROLS -->
+				<div id="control" class="hide">
+					<div id="reset" class="control button" onclick="javascript:doReset()"></div>
+					<div id="optionA" class="option button" onclick="javascript:doOptions(0)"></div><div id="optionB" class="option button" onclick="javascript:doOptions(1)"></div>
+					<div id="ok" class="control button" onclick="javascript:doOK()"></div>
+					<div id="cancel" class="control button" onclick="javascript:doCancel()"></div>
+				</div>
+				
+	</body>
+</html>

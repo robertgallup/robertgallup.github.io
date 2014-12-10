@@ -174,6 +174,7 @@ function resetTime() {
 		}
 	}
 	
+	setResetImage ();
 	totalSeconds = startHour[currentTimer] * 3600 + startMin[currentTimer] * 60 + startSecond[currentTimer];
 	showTime();
 }
@@ -181,7 +182,6 @@ function resetTime() {
 function doReset() {
 	hideTimesUp();
 	resetTime();
-	setResetImage ();
 }
 
 function timeClick() {
@@ -201,6 +201,7 @@ function hideTimesUp() {
 }
 
 function autoReset() {
+	isReset = true;
 	hideTimesUp();
 	resetTime();
 }

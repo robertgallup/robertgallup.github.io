@@ -1,12 +1,18 @@
 var intervalID;
 
-var startHour	= 0;
-var startMin	= 1;
-var startSecond	= 0;
+var timerColors		= ['#FFE5BB', '#9FF4B7'];
+var resetButtonImg	= ["url('images/resetA.png')", "url('images/resetB.png')"];
+var isReset			= false;
+var startHour		= [0, 0];
+var startMin	   	= [1, 2];
+var startSecond		= [0, 0];
 
-var curHour		= 0;
-var curMin		= 6;
-var curSecond	= 0;
+var optionTimer		= 0;
+var currentTimer	= 0;
+
+var curHour			= 0;
+var curMin			= 0;
+var curSecond		= 0;
 
 var states = {
 	RUNNING : 0,
@@ -26,7 +32,7 @@ function initDisplay() {
 	optionForm = document.getElementById("optionsForm");
 	controls = document.getElementById("control")
 
-	totalSeconds = startHour * 3600 + startMin * 60 + startSecond;
+	totalSeconds = startHour[currentTimer] * 3600 + startMin[currentTimer] * 60 + startSecond[currentTimer];
 	currentState = states.STOPPED;
 	
 	clockFace.style.visibility = "visible";
@@ -34,6 +40,11 @@ function initDisplay() {
 	doReset();
 					
 }
+
+function setResetImage() {
+	document.getElementById("reset").style.backgroundImage = resetButtonImg[currentTimer];
+}	
+
 
 function showTime () {
     
@@ -72,58 +83,61 @@ function updateControls() {
 }
 
 // Shows the option panel
-function doOptions() {
+function doOptions(timer) {
 
+	optionTimer = timer;
+	
 	hideTimesUp();
 	
+	// Set the background color of input fields
+/*
+	var all = document.querySelectorAll("input");
+	for (var i = 0; i < all.length; i++) {
+		all[i].style.backgroundColor = timerColors[timer];
+	}
+*/
+	
+    // Set form fields to timer values
+/*
+    document.getElementById("hourInput"  ).value = startHour[optionTimer];
+    document.getElementById("minuteInput").value = startMin[optionTimer];
+    document.getElementById("secondInput").value = startSecond[optionTimer];
+*/
+
 	clockFace.style.visibility = "hidden";
     optionForm.style.visibility = "visible";
     
     document.getElementById("ok").style.display = "inline-block";
     document.getElementById("cancel").style.display = "inline-block";
     document.getElementById("reset").style.display = "none";
-    document.getElementById("options").style.display = "none";
+    document.getElementById("optionA").style.display = "none";
+    document.getElementById("optionB").style.display = "none";
     
-        controls.className = "show";
+    controls.className = "show";
     
 }
 
 function doOK() {
 
     // Get values from the form fields
-/*
-    var newHour   = parseInt(document.getElementById("hourInput"  ).value);
-    var newMinute = parseInt(document.getElementById("minuteInput").value);
-    var newSecond = parseInt(document.getElementById("secondInput").value);
-*/
-
     var newHour   = document.getElementById("hourInput"  ).value;
     var newMinute = document.getElementById("minuteInput").value;
     var newSecond = document.getElementById("secondInput").value;
     
-	console.log ("\nBEFORE");
-    console.log ("newHour: " + newHour);
-    console.log ("newMin: " + newMinute);
-    console.log ("newSecond: " + newSecond);
-
 	// It's crazy, I know, but this makes sure the values are within range (>=0, <99 for hours, <59 for minutes+seconds)
     newHour 	= (isNaN(newHour) 	|| (newHour<0))   ? 0 : ((newHour  >99) ? 99 : newHour);
     newMinute 	= (isNaN(newMinute) || (newMinute<0)) ? 0 : ((newMinute>59) ? 59 : newMinute);
     newSecond 	= (isNaN(newSecond) || (newSecond<0)) ? 0 : ((newSecond>59) ? 59 : newSecond);
 
-	console.log ("\nAFTER");
-    console.log ("newHour: " + newHour);
-    console.log ("newMin: " + newMinute);
-    console.log ("newSecond: " + newSecond);
-    
 	// Make sure they're not all zero (like, what's the point?). And, set the new timer times
-    if ((newHour + newMinute + newSecond) != 0) {
-    	startHour 	= newHour;
-    	startMin	= newMinute;
-		startSecond	= newSecond;
-	}
+//     if ((newHour + newMinute + newSecond) != 0) {
+    	startHour[optionTimer] 		= newHour;
+    	startMin[optionTimer]		= newMinute;
+		startSecond[optionTimer]	= newSecond;
+// 	}
 
     // Finally, reset the clock to the potentially new values
+    isReset = false;
     doReset();
 	doCancel();
 
@@ -140,7 +154,8 @@ function doCancel() {
     document.getElementById("ok").style.display = "none";
     document.getElementById("cancel").style.display = "none";
     document.getElementById("reset").style.display = "inline-block";
-    document.getElementById("options").style.display = "inline-block";
+    document.getElementById("optionA").style.display = "inline-block";
+    document.getElementById("optionB").style.display = "inline-block";
     
     var h = document.getElementById("hourInput"); h.value = '';
 	var m = document.getElementById("minuteInput"); m.value = '';
@@ -150,6 +165,7 @@ function doCancel() {
 }
 
 function doRun() {
+	isReset = false;
 	if (clockFace.style.visibility == "visible") {		        
         intervalID = setInterval (updateClock, 1000);
         currentState = states.RUNNING;
@@ -166,13 +182,24 @@ function doStop() {
 }
 
 function resetTime() {
-	totalSeconds = startHour * 3600 + startMin * 60 + startSecond;
+	
+	// Only toggle timers if the next timer is valid
+	if (isSetNextTimer()) {
+		if (isReset) {
+			nextTimer();
+		} else {
+			isReset = true;
+		}
+	}
+	
+	totalSeconds = startHour[currentTimer] * 3600 + startMin[currentTimer] * 60 + startSecond[currentTimer];
 	showTime();
 }
 
 function doReset() {
 	hideTimesUp();
 	resetTime();
+	setResetImage ();
 }
 
 function timeClick() {
@@ -191,9 +218,20 @@ function hideTimesUp() {
     document.getElementById("timesUp").style.visibility = "hidden";
 }
 
-function autoRestart() {
+function autoReset() {
 	hideTimesUp();
 	resetTime();
-	doRun();
 }
 
+function nextTimer() {
+	currentTimer = returnNextTimer();
+}
+
+function isSetNextTimer() {
+	var n = returnNextTimer();
+	return ((startHour[n] != 0) || (startMin[n] != 0) || (startSecond[n] != 0))
+}
+
+function returnNextTimer() {
+	return 1 - currentTimer;
+}

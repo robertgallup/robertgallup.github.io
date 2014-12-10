@@ -16,19 +16,21 @@
 					<div id="clockFace" onclick="javascript:timeClick()"></div>
 					
 					<div id="optionsForm">
-						<input type="text" id="hourInput" name="hours" placeholder="H"> <input type="text" id="minuteInput" name="minutes" placeholder="M"> <input type="text" id="secondInput" name="seconds" placeholder="S">
+						<input type="text" id="hourInput" class="optionA" name="hours" placeholder="H">
+						<input type="text" id="minuteInput" class="optionA" name="minutes" placeholder="M">
+						<input type="text" id="secondInput" class="optionA" name="seconds" placeholder="S">
 					</div>
 					
-					<div id="timesUp" onclick="javascript:autoRestart()">TIME</div>
+					<div id="timesUp" onclick="javascript:autoReset()">TIME</div>
 					
 				</div>
 				
 				<!-- THE CONTROLS -->
 				<div id="control" class="hide">
-					<div id="reset" class="optionButton" onclick="javascript:doReset()"></div>
-					<div id="options" class="optionButton" onclick="javascript:doOptions()"></div>
-					<div id="ok" class="optionButton" onclick="javascript:doOK()"></div>
-					<div id="cancel" class="optionButton" onclick="javascript:doCancel()"></div>
+					<div id="reset" class="control button" onclick="javascript:doReset()"></div>
+					<div id="optionA" class="option button" onclick="javascript:doOptions(0)"></div><div id="optionB" class="option button" onclick="javascript:doOptions(1)"></div>
+					<div id="ok" class="control button" onclick="javascript:doOK()"></div>
+					<div id="cancel" class="control button" onclick="javascript:doCancel()"></div>
 				</div>
 				
 	</body>

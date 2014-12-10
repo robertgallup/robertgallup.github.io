@@ -108,10 +108,16 @@ input[type=text] {
 	background-image: url("images/reset.png");
 }
 
-#options {
+#optionA {
 	display: inline-block;
-	background-image: url("images/options.png");
-	margin-left: 70px;
+	background-image: url("images/optionsA.png");
+	margin-left: 10px;
+}
+
+#optionB {
+	display: inline-block;
+	background-image: url("images/optionsB.png");
+	margin-left: 0px;
 }
 
 #ok {
@@ -122,34 +128,35 @@ input[type=text] {
 #cancel {
 	display: none;
 	background-image: url("images/cancel.png");
-	margin-left: 70px;
+	margin-left: 10px;
 }
-.optionButton {
+
+.button {
 	background-size: 100% 100%;
-	width: 60px;
 	height: 60px;
 	background-repeat: no-repeat;
-	position: absolute;
+	position: relative;
 	top: 50%;
 	margin-top: -30px;
 	border: 0;
 	opacity: 0.7;
 }			
-#ok:hover {
-	opacity: 1;
-	cursor:  pointer;
+.control {
+	width: 60px;	
 }
-#cancel:hover {
-	opacity: 1;
-	cursor:  pointer;
+.option {
+	width: 30px;
 }
-#reset:hover {
-	opacity: 1;
-	cursor:  pointer;
+.optionA {
+	background-color: #FFB93E;
 }
-#options:hover {
+.optionB {
+	background-color: #21C152;
+}
+
+.button:hover {
 	opacity: 1;
-	cursor:  pointer;
+	cursor:	 pointer;
 }
 
 .show {

@@ -2,7 +2,7 @@ var intervalID;
 
 var timerColors		= ['#FFE5BB', '#9FF4B7'];
 var resetButtonImg	= ["url('images/resetA.png')", "url('images/resetB.png')"];
-var isReset			= false;
+var isReset			= true;
 var startHour		= [0, 0];
 var startMin	   	= [1, 0];
 var startSecond		= [0, 0];
@@ -115,9 +115,11 @@ function doOK() {
 
 	// Make sure they're not all zero (like, what's the point?). And, set the new timer times
 //     if ((newHour + newMinute + newSecond) != 0) {
-    	startHour[optionTimer] 		= newHour;
-    	startMin[optionTimer]		= newMinute;
-		startSecond[optionTimer]	= newSecond;
+    currentTimer = optionTimer;
+	startHour[currentTimer] 	= newHour;
+	startMin[currentTimer]		= newMinute;
+	startSecond[currentTimer]	= newSecond;
+	isReset = false;
 // 	}
 
     // Finally, reset the clock to the potentially new values
@@ -169,14 +171,14 @@ function resetTime() {
 	if (isSetNextTimer()) {
 		if (isReset) {
 			nextTimer();
-		} else {
-			isReset = true;
 		}
 	}
 	
+	isReset = true;
 	setResetImage ();
 	totalSeconds = startHour[currentTimer] * 3600 + startMin[currentTimer] * 60 + startSecond[currentTimer];
 	showTime();
+
 }
 
 function doReset() {

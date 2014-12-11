@@ -104,14 +104,14 @@ function doOptions(timer) {
 function doOK() {
 
     // Get values from the form fields
-    var newHour   = document.getElementById("hourInput"  ).value;
-    var newMinute = document.getElementById("minuteInput").value;
-    var newSecond = document.getElementById("secondInput").value;
-    
+    var newHour   = parseInt(document.getElementById("hourInput"  ).value);
+    var newMinute = parseInt(document.getElementById("minuteInput").value);
+    var newSecond = parseInt(document.getElementById("secondInput").value);
+   
 	// It's crazy, I know, but this makes sure the values are within range (>=0, <99 for hours, <59 for minutes+seconds)
-    newHour 	= (isNaN(newHour) 	|| (newHour<0))   ? 0 : ((newHour  >99) ? 99 : newHour);
-    newMinute 	= (isNaN(newMinute) || (newMinute<0)) ? 0 : ((newMinute>59) ? 59 : newMinute);
-    newSecond 	= (isNaN(newSecond) || (newSecond<0)) ? 0 : ((newSecond>59) ? 59 : newSecond);
+    newHour 	= (!(newHour) 	|| (newHour<0))   ? 0 : ((newHour  >99) ? 99 : newHour);
+    newMinute 	= (!(newMinute) || (newMinute<0)) ? 0 : ((newMinute>59) ? 59 : newMinute);
+    newSecond 	= (!(newSecond) || (newSecond<0)) ? 0 : ((newSecond>59) ? 59 : newSecond);
 
 	// Make sure they're not all zero (like, what's the point?). And, set the new timer times
 //     if ((newHour + newMinute + newSecond) != 0) {

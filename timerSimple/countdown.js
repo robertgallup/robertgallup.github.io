@@ -97,9 +97,9 @@ function doOK() {
     var newSecond = parseInt(document.getElementById("secondInput").value);
 */
 
-    var newHour   = document.getElementById("hourInput"  ).value;
-    var newMinute = document.getElementById("minuteInput").value;
-    var newSecond = document.getElementById("secondInput").value;
+    var newHour   = parseInt(document.getElementById("hourInput"  ).value);
+    var newMinute = parseInt(document.getElementById("minuteInput").value);
+    var newSecond = parseInt(document.getElementById("secondInput").value);
     
 	console.log ("\nBEFORE");
     console.log ("newHour: " + newHour);

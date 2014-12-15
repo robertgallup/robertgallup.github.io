@@ -26,6 +26,26 @@ var clockFace;
 var optionsForm;
 var controls;
 
+// Process pgUP, pgDown, and "Stop" keys from USB remote
+function doKeyDown (e) {
+	var event = window.event ? window.event : e;
+	
+	switch (event.keyCode) {
+		
+		case 66:			// Stop button
+			timeClick();
+			break;
+			
+		case 33:			// pgUP
+		case 34:			// pgDOWN
+			doReset();
+			break;
+			
+		default:
+			
+	}
+}
+
 function initDisplay() {
 
 	clockFace = document.getElementById("clockFace");
@@ -188,7 +208,7 @@ function doReset() {
 
 function timeClick() {
     if ((currentState == states.STOPPED) & (totalSeconds <= 0)) {
-        doReset();
+        autoReset();
     } else {
         if (currentState == states.RUNNING) {
 	        doStop();

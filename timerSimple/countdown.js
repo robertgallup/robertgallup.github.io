@@ -10,7 +10,8 @@ var curSecond	= 0;
 
 var states = {
 	RUNNING : 0,
-	STOPPED : 1
+	STOPPED : 1,
+	FINISHED: 2
 }
 
 var totalSeconds;
@@ -19,6 +20,26 @@ var currentState;
 var clockFace;
 var optionsForm;
 var controls;
+
+// Process pgUP, pgDown, and "Stop" keys from USB remote
+function doKeyDown (e) {
+	var event = window.event ? window.event : e;
+	
+	switch (event.keyCode) {
+		
+		case 66:			// Stop button
+			timeClick();
+			break;
+			
+		case 33:			// pgUP
+		case 34:			// pgDOWN
+			doReset();
+			break;
+			
+		default:
+			
+	}
+}
 
 function initDisplay() {
 
@@ -55,7 +76,7 @@ function updateClock() {
     if (totalSeconds <= 0) {
         document.getElementById("timesUp").style.visibility = "visible";
 		doStop();
-		resetTime();       
+// 		resetTime();       
     } else {
         showTime();
     }
@@ -101,21 +122,11 @@ function doOK() {
     var newMinute = parseInt(document.getElementById("minuteInput").value);
     var newSecond = parseInt(document.getElementById("secondInput").value);
     
-	console.log ("\nBEFORE");
-    console.log ("newHour: " + newHour);
-    console.log ("newMin: " + newMinute);
-    console.log ("newSecond: " + newSecond);
-
 	// It's crazy, I know, but this makes sure the values are within range (>=0, <99 for hours, <59 for minutes+seconds)
     newHour 	= (isNaN(newHour) 	|| (newHour<0))   ? 0 : ((newHour  >99) ? 99 : newHour);
     newMinute 	= (isNaN(newMinute) || (newMinute<0)) ? 0 : ((newMinute>59) ? 59 : newMinute);
     newSecond 	= (isNaN(newSecond) || (newSecond<0)) ? 0 : ((newSecond>59) ? 59 : newSecond);
 
-	console.log ("\nAFTER");
-    console.log ("newHour: " + newHour);
-    console.log ("newMin: " + newMinute);
-    console.log ("newSecond: " + newSecond);
-    
 	// Make sure they're not all zero (like, what's the point?). And, set the new timer times
     if ((newHour + newMinute + newSecond) != 0) {
     	startHour 	= newHour;
@@ -167,6 +178,7 @@ function doStop() {
 
 function resetTime() {
 	totalSeconds = startHour * 3600 + startMin * 60 + startSecond;
+	currentState = states.STOPPED;
 	showTime();
 }
 
@@ -189,5 +201,6 @@ function timeClick() {
 
 function hideTimesUp() {
     document.getElementById("timesUp").style.visibility = "hidden";
+    resetTime();
 }
 

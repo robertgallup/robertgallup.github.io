@@ -32,7 +32,8 @@ function doKeyDown (e) {
 	
 	switch (event.keyCode) {
 		
-		case 66:			// Stop button
+		case 32:			// Space
+		case 66:			// "b"
 			timeClick();
 			break;
 			

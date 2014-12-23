@@ -1,5 +1,9 @@
 var intervalID;
 
+var normalColor		= "transparent";
+var warnColor		= "#FFFF00";
+var stopColor		= "red";
+
 var startHour	= 0;
 var startMin	= 1;
 var startSecond	= 0;
@@ -8,18 +12,20 @@ var curHour		= 0;
 var curMin		= 6;
 var curSecond	= 0;
 
+var totalSeconds;
+var currentState;
+var warningTime;
+
 var states = {
 	RUNNING : 0,
 	STOPPED : 1,
 	FINISHED: 2
 }
 
-var totalSeconds;
-var currentState;
-
 var clockFace;
 var optionsForm;
 var controls;
+var timesUp;
 
 // Process pgUP, pgDown, and "Stop" keys from USB remote
 function doKeyDown (e) {
@@ -46,7 +52,8 @@ function initDisplay() {
 
 	clockFace = document.getElementById("clockFace");
 	optionForm = document.getElementById("optionsForm");
-	controls = document.getElementById("control")
+	controls = document.getElementById("control");
+	timesUp = document.getElementById("timesUp");
 
 	totalSeconds = startHour * 3600 + startMin * 60 + startSecond;
 	currentState = states.STOPPED;
@@ -61,7 +68,12 @@ function showTime () {
     
     // Calculate hours/minutes/seconds
     var seconds = totalSeconds;
-    curHour = (seconds < 3600)?0:Math.floor(seconds/3600);
+    
+    // Update background to provide warning prior to finish
+	var newBG = ((seconds <= warningTime)?warnColor:normalColor);
+	if (clockFace.style.backgroundColor != newBG) clockFace.style.backgroundColor = newBG
+
+	curHour = (seconds < 3600)?0:Math.floor(seconds/3600);
     seconds -= (curHour * 3600);
     curMin = (seconds < 60)?0:Math.floor(seconds/60);
     seconds -= (curMin * 60);
@@ -75,9 +87,8 @@ function showTime () {
 function updateClock() {
     totalSeconds--;
     if (totalSeconds <= 0) {
-        document.getElementById("timesUp").style.visibility = "visible";
+        showTimesUp();
 		doStop();
-// 		resetTime();       
     } else {
         showTime();
     }
@@ -180,7 +191,22 @@ function doStop() {
 function resetTime() {
 	totalSeconds = startHour * 3600 + startMin * 60 + startSecond;
 	currentState = states.STOPPED;
+	setWarningTime();
 	showTime();
+}
+
+function setWarningTime() {
+	if (totalSeconds >= 240) {
+		warningTime = 60;
+	} else if (totalSeconds >= 120) {
+		warningTime = 30;
+	} else if (totalSeconds >= 40) {
+		warningTime = 10;
+	} else if (totalSeconds >= 10) {
+		warningTime = 5;
+	} else {
+		warningTime = 2;
+	}
 }
 
 function doReset() {
@@ -203,5 +229,9 @@ function timeClick() {
 function hideTimesUp() {
     document.getElementById("timesUp").style.visibility = "hidden";
     resetTime();
+}
+
+function showTimesUp() {
+    timesUp.style.visibility = "visible";
 }
 

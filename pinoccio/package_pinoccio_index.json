@@ -1,0 +1,44 @@
+{
+  "packages": [
+    {
+      "name": "pinoccio",
+      "maintainer": "Robert Gallup",
+      "websiteURL": "https://github.com/robertgallup/pinoccio",
+      "email": "hello@robertgallup.com",
+      "help": {
+        "online": "http://pinocc.io"
+      },
+      "platforms": [
+        {
+          "name": "Pinoccio v1",
+          "architecture": "avr",
+          "version": "1.0.0",
+          "category": "Contributed",
+          "help": {
+            "online": "http://pinocc.io/forum/myboard"
+          },
+          "url": "https://robertgallup.github.io/pinoccio/pinoccio-arduino-1.0.0.zip",
+          "archiveFileName": "pinoccio-arduino-1.0.0.zip",
+          "checksum": "SHA-256:2bd9840cea27c64a211a0e744bc2c2301553bf12da4fb5c17626b3de2e495484",
+          "size": "1386098",
+          "boards": [
+            {"name": "Pinnocio Scout"},
+          ],
+          "toolsDependencies": [
+            {
+              "packager": "arduino",
+              "name": "avr-gcc",
+              "version": "4.8.1-arduino5"
+            },
+            {
+              "packager": "arduino",
+              "name": "avrdude",
+              "version": "6.0.1-arduino5"
+            }
+          ]
+        }
+      ],
+      "tools":[]
+    }
+  ]
+}

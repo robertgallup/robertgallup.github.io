@@ -19,7 +19,7 @@
           },
           "url": "https://robertgallup.github.io/pinoccio/pinoccio-arduino-1.0.0.zip",
           "archiveFileName": "pinoccio-arduino-1.0.0.zip",
-          "checksum": "SHA-256:8091af09f46ab82eb87744615ffb24b5c8d1963eb8cbc7c1eff453b9f798a8a9",
+          "checksum": "SHA-256:be603ded08ef3b1a53d78ad4bb751e195e7156e3726df5a82e603f700a5a32f1",
           "size": "1411612",
           "boards": [
             {"name": "Pinnocio Scout"}

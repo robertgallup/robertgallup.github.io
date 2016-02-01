@@ -10,7 +10,7 @@
       },
       "platforms": [
         {
-          "name": "Pinoccio v1",
+          "name": "Pinoccio",
           "architecture": "avr",
           "version": "1.0.0",
           "category": "Contributed",
@@ -19,8 +19,8 @@
           },
           "url": "https://robertgallup.github.io/pinoccio/pinoccio-arduino-1.0.0.zip",
           "archiveFileName": "pinoccio-arduino-1.0.0.zip",
-          "checksum": "SHA-256:2bd9840cea27c64a211a0e744bc2c2301553bf12da4fb5c17626b3de2e495484",
-          "size": "1386098",
+          "checksum": "SHA-256:01e7829c40285bd785bec707d81d5426994920151096b46b633c3f209b8b6814",
+          "size": "1320826",
           "boards": [
             {"name": "Pinnocio Scout"}
           ],

@@ -1,5 +1,5 @@
 {
-  "packages": [
+  "packages": 
     {
       "name": "pinoccio",
       "maintainer": "Robert Gallup",
@@ -40,5 +40,4 @@
       ],
       "tools":[]
     }
-  ]
 }

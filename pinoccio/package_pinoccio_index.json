@@ -1,5 +1,5 @@
 {
-  "packages": 
+  "packages": [
     {
       "name": "pinoccio",
       "maintainer": "Robert Gallup",
@@ -22,7 +22,7 @@
           "checksum": "SHA-256:2bd9840cea27c64a211a0e744bc2c2301553bf12da4fb5c17626b3de2e495484",
           "size": "1386098",
           "boards": [
-            {"name": "Pinnocio Scout"},
+            {"name": "Pinnocio Scout"}
           ],
           "toolsDependencies": [
             {
@@ -40,4 +40,5 @@
       ],
       "tools":[]
     }
+  ]
 }

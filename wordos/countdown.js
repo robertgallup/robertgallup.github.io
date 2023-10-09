@@ -201,9 +201,9 @@ function resetTime() {
 
 function setWarningTime() {
 	if (totalSeconds >= 240) {
-		warningTime = 60;
-	} else if (totalSeconds >= 120) {
 		warningTime = 30;
+	} else if (totalSeconds >= 120) {
+		warningTime = 15;
 	} else if (totalSeconds >= 40) {
 		warningTime = 10;
 	} else if (totalSeconds >= 10) {

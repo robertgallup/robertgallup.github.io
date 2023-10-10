@@ -1,7 +1,15 @@
 /* standard elements */
 
-body  {
-	background-color: #F0F0F0; //#FDFDFF;
+html {
+  position: relative;
+  height: 100%;
+  -webkit-text-size-adjust: 100%; /* Prevent font scaling in landscape while allowing user zoom */
+  overflow: hidden;
+}
+
+body {
+  background-color: #F0F0F0;
+  height: 100%;
 }
 
 #clock {

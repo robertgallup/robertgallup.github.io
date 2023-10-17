@@ -43,10 +43,7 @@ body {
 	font-weight: bold;
 	vertical-align: middle;
 	line-height: 300px;
-/*
-		font-size: 260px;
-*/
-		font-size: 18vw;
+	font-size: 18vw;
 }
 
 #timesUp {
@@ -94,6 +91,10 @@ input[type=number] {
 }
 
 #control {
+	display: flex;
+	align-items: center;
+	/* justify-items: left; */
+
 	position: absolute;
 	left: 77%;
 	height:300px;
@@ -123,7 +124,6 @@ input[type=number] {
 #options {
 	display: inline-block;
 	background-image: url("images/options.png");
-	margin-left: 70px;
 }
 
 #ok {
@@ -134,18 +134,17 @@ input[type=number] {
 #cancel {
 	display: none;
 	background-image: url("images/cancel.png");
-	margin-left: 70px;
 }
 .optionButton {
-	background-size: 100% 100%;
-	width: 60px;
-	height: 60px;
-	background-repeat: no-repeat;
+	background-size: 100%;
+ 	width: calc((5vw));
+ 	height: calc((5vw)); 
 	position: absolute;
-	top: 50%;
-	margin-top: -30px;
 	border: 0;
 	opacity: 0.7;
+	position: relative;
+	float: left;
+	margin-left: 3%;
 }			
 #ok:hover {
 	opacity: 1;

@@ -144,8 +144,8 @@ input[type=number] {
 }
 .optionButton {
 	background-size: 100%;
- 	width: calc((5vw));
- 	height: calc((5vw)); 
+ 	width: calc((8vw));
+ 	height: calc((8vw)); 
 	position: absolute;
 	border: 0;
 	opacity: 0.7;

@@ -90,10 +90,10 @@ body {
 input[type=number] {
 	position: relative;
 	height: auto;
-	width: 15%;
+	width: 20%;
 	vertical-align: middle;
 	font-size: 9vw;
-	font-weight: 900;
+	font-weight: 500;
 	background-color: #EEEEEE;
 }
 

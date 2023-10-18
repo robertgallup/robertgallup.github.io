@@ -95,6 +95,7 @@ input[type=number] {
 	font-size: 9vw;
 	font-weight: 500;
 	background-color: #EEEEEE;
+	border-width: .5;
 }
 
 #control {
